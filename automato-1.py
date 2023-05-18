@@ -12,8 +12,13 @@ while start not in estados:
 	start = str(input("Estado inicial: "))
 
 end = str(input("E qual desses estados são finais? Digite separando-os por espaços: ")).split()
-#for estado in end:
-#	if estado not in estados:
-#		print("você digitou um estado q: '{}' final que não se enontra na #lista de estados Q: {}.\nPor favor digite novamente".format(estado, estados))
-#		end = str(input("Estados finais: ")).split()
-#print(end)
+while True:
+	estados_invalidos = []
+	for estado in end:
+		if estado not in estados:
+			estados_invalidos.append(estado)
+	if len(estados_invalidos) > 0:
+		print("você digitou um ou mais estados q: '{}' finais que não se enontram na lista de estados Q: {}.\nPor favor digite-os novamente".format(estados_invalidos, estados))
+		end = str(input("Estados finais: ")).split()
+	elif len(estados_invalidos) == 0:
+		break
