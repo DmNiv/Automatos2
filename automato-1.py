@@ -1,6 +1,6 @@
 class Automato:
-	def __init__(self, Q, Σ, σ, estado_inicial, estado_final):
-		self.estados = Q
+	def __init__(self, q, Σ, σ, estado_inicial, estado_final):
+		self.estados = q
 		self.alfabeto = Σ
 		self.trans_func = σ
 		self.start = estado_inicial
