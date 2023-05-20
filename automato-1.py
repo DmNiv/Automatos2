@@ -1,25 +1,42 @@
 class Automato:
-	def __init__(self, q, Σ, σ, estado_inicial, estado_final):
+	def __init__(self, q, Σ, estado_inicial, estado_final):
 		self.estados = q
 		self.alfabeto = Σ
-		self.trans_func = σ
+		self.trans_func = {}
 		self.start = estado_inicial
 		self.end = estado_final
 
-estados = []
-alfabeto = []
-trans_func = {}
-start = ""
-end = []
+	def processo(self, cadeia):
+		estado_atual = self.start
+		for simbolo in cadeia:
+			if (estado_atual, simbolo) in self.trans_func:
+				estado_atual = self.trans_func[(estado_atual, simbolo)]
+			else:
+				print("O autômato não reconhece a cadeia '{}'.".format(cadeia))
+				return False
+		if estado_atual in self.end:
+			print("O autômato lê a cadeia '{}'.".format(cadeia))
+			return estado_atual in self.end
+		else:
+			print("O autômato não lê a cadeia '{}'.".format(cadeia))
+			return estado_atual in self.end
+
+	def adicionar_trans_func(self, estado, simbolo, estado_destino):
+		self.trans_func[(estado, simbolo)] = estado_destino
+
 
 estados = list(set(str(input("Digite os estados do autômato, separados por espaços: ")).split()))
+
 alfabeto = list(set(str(input("Digite o alfabeto reconhecido pelo autômato, com os símbolos separados por espaços: ")).split()))
+
 start = str(input("Agora qual desses estados é o estado inicial?: "))
+
 while start not in estados:
 	print("você digitou um estado inicial que não se enontra na lista de estados Q: {}.\nPor favor digite novamente".format(estados))
 	start = str(input("Estado inicial: "))
 
 end = list(set(str(input("E qual desses estados são finais? Digite separando-os por espaços: ")).split()))
+
 while True:
 	estados_invalidos = []
 	for estado in end:
@@ -31,5 +48,20 @@ while True:
 	elif len(estados_invalidos) == 0:
 		break
 
-automato1 = Automato(estados, alfabeto, trans_func, start, end)
-print(automato1.estados)
+automato1 = Automato(estados, alfabeto, start, end)
+
+print("Por fim, vamos inserir as transições do autômato, no formato 'estado simbolo estado_destino'.")
+
+while True:
+	opcao = input("Digite a transição ou digite 'sair' para encerrar: ")
+	if opcao == "sair":
+		break
+	estado, simbolo, estado_destino = opcao.split()
+	if estado not in estados or simbolo not in alfabeto or estado_destino not in estados:
+		print("Você digitou um estado de leitura, símbolo ou estado destino que não se encontra na lista. Por favor digite a função de transição novamente.")
+		continue
+	automato1.adicionar_trans_func(estado, simbolo, estado_destino)
+
+entrada = str(input("Qual a sentença que o autômato deve reconhecer?: "))
+
+resultado = automato1.processo(entrada)
