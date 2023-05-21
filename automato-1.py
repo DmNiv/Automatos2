@@ -12,13 +12,13 @@ class Automato:
 			if (estado_atual, simbolo) in self.trans_func:
 				estado_atual = self.trans_func[(estado_atual, simbolo)]
 			else:
-				print("O autômato não reconhece a cadeia '{}'.".format(cadeia))
+				print("O autômato não reconhece a cadeia '{}' pois há uma transição inválida.\n".format(cadeia))
 				return False
 		if estado_atual in self.end:
-			print("O autômato lê a cadeia '{}'.".format(cadeia))
+			print("O autômato lê a cadeia '{}'.\n".format(cadeia))
 			return estado_atual in self.end
 		else:
-			print("O autômato não lê a cadeia '{}'.".format(cadeia))
+			print("O autômato não lê a cadeia '{}' pois não termina em um estado final.\n".format(cadeia))
 			return estado_atual in self.end
 
 	def adicionar_trans_func(self, estado, simbolo, estado_destino):
@@ -62,6 +62,8 @@ while True:
 		continue
 	automato1.adicionar_trans_func(estado, simbolo, estado_destino)
 
-entrada = str(input("Qual a sentença que o autômato deve reconhecer?: "))
-
-resultado = automato1.processo(entrada)
+while True:
+	entrada = str(input("Digite a sentença que o autômato deve reconhecer ou digite 'sair' para encerrar: "))
+	if entrada == "sair":
+		break
+	resultado = automato1.processo(entrada)
