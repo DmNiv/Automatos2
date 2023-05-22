@@ -1,5 +1,5 @@
-class Automato: #Cria a classe "Automato".
-	def __init__(self, q, Σ, estado_inicial, estado_final): #Inicializa os atributos do autômato.
+class Automato:
+	def __init__(self, q, Σ, estado_inicial, estado_final):
 		self.estados = q
 		self.alfabeto = Σ
 		self.trans_func = {}
