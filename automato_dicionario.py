@@ -1,4 +1,4 @@
-#criar um dicionário em as chaves sejam os estados e os valores sejam outros dicionários contendo o caracter lido e o estado alvo.
+#criar um dicionário em que as chaves sejam os estados e os valores sejam outros dicionários contendo o caracter lido e o estado alvo.
 
 #exemplo de dicionário.
 #imagem do automáto: https://i.stack.imgur.com/s7uO2.png
