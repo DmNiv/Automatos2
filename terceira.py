@@ -2,8 +2,12 @@ def Aceita(transitions, trans_saida, start, end, cadeia):
     state = start
     string_saida = ''
     for simbolo in cadeia:
-        string_saida += trans_saida[state][simbolo]
-        state = transitions[state][simbolo]
+        try:
+            string_saida += trans_saida[state][simbolo]
+            state = transitions[state][simbolo]
+        except KeyError:
+            print(f'Valor não faz parte do alfabeto: {simbolo}')
+            return False
     print(string_saida)
     return state in end
 
@@ -65,4 +69,5 @@ trans_saida = {
         100: '1',
     }
 }
-print(Aceita(trans_func, trans_saida, start, end, [50,25,50,100,25,50,100]))
+print(Aceita(trans_func, trans_saida, start,
+      end, [50, 25, 50, 100, 25, 50, 100]))
