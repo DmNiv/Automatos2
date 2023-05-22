@@ -1,19 +1,22 @@
 def Aceita(transitions, trans_saida, start, end, cadeia):
     state = start
     string_saida = ''
+    print('(Estado atual, Simbolo)')
     for simbolo in cadeia:
         try:
+            print(f"({state}, {simbolo}) -> ", end='')
             string_saida += trans_saida[state][simbolo]
             state = transitions[state][simbolo]
         except KeyError:
-            print(f'Valor não faz parte do alfabeto: {simbolo}')
+            print(f'Moeda recusada: {simbolo}')
             return False
-    print(string_saida)
+    print(f'({state}, λ)')
+    print('Cadeia de saída: ', string_saida)
     return state in end
 
 
 start = 0
-end = [0, 25, 75, 100]
+end = [25, 50, 75, 100]
 trans_func = {
     0: {
         25: 25,
@@ -69,5 +72,13 @@ trans_saida = {
         100: '1',
     }
 }
-print(Aceita(trans_func, trans_saida, start,
-      end, [50, 25, 50, 100, 25, 50, 100]))
+user_choice = 0
+print('Moedas aceitas: 25, 50, 100')
+moedas_inseridas = []
+while True:
+    user_choice = int(input('Insira uma moeda (0 para sair):'))
+    if user_choice == 0:
+        break
+    moedas_inseridas.append(user_choice)
+
+Aceita(trans_func, trans_saida, start, end, moedas_inseridas)
