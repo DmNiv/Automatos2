@@ -4,9 +4,9 @@ class Estado_q0:
     
     def transicao(self, entrada):
         if entrada == 'a':
-            return Estado_q1()
-        elif entrada == 'b':
             return Estado_q2()
+        elif entrada == 'b':
+            return Estado_q3()
         else:
             return EstadoDeRejeicao()
 
@@ -15,10 +15,8 @@ class Estado_q1():
         self.nome = "q1"
     
     def transicao(self, entrada):
-        if entrada == 'a':
-            return Estado_q3()
-        elif entrada == 'b':
-            return Estado_q4()
+        if entrada == 'b':
+            return Estado_q1()
         else:
             return EstadoDeRejeicao()
         
@@ -28,7 +26,11 @@ class Estado_q2:
         self.nome = "q2"
 
     def transicao(self, entrada):
-        if entrada == "a" or "b":
+        if entrada == 'a':
+            return Estado_q4()
+        elif entrada == 'b':
+            return Estado_q1()
+        else: 
             return EstadoDeRejeicao()
 
 class Estado_q3:
@@ -36,11 +38,7 @@ class Estado_q3:
         self.nome = "q3"
     
     def transicao(self, entrada):
-        if entrada == 'a':
-            return Estado_q3()
-        elif entrada == 'b':
-            return Estado_q2()
-        else:
+        if len(entrada) > 0:
             return EstadoDeRejeicao()
         
 class Estado_q4:
@@ -48,8 +46,10 @@ class Estado_q4:
         self.nome = "q4"
     
     def transicao(self, entrada):
-        if entrada == 'b':
-            return Estado_q4()
+        if entrada == 'a':
+            return Estado_q4
+        elif entrada == 'b':
+            return Estado_q3()
         else:
             return EstadoDeRejeicao()
 
@@ -75,7 +75,7 @@ class Automato:
             print("Cadeia aceita pelo automato")
         elif isinstance(self.estado_atual, Estado_q2):
             print("Cadeia aceita pelo automato")
-        elif isinstance(self.estado_atual, Estado_q4):
+        elif isinstance(self.estado_atual, Estado_q3):
             print("Cadeia aceita pelo automato")
         else:
             print("Cadeia rejeitada pelo automato")
