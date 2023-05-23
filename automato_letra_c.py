@@ -25,7 +25,7 @@ class Estado_q1():
         
 class Estado_q2:
     def __init__(self):
-        self.nome = "q2Estado_q2"
+        self.nome = "q2"
 
     def transicao(self, entrada):
         if entrada == "a" or "b":
@@ -45,7 +45,7 @@ class Estado_q3:
         
 class Estado_q4:
     def __init__(self):
-        self.nome = "q4Estado_q4"
+        self.nome = "q4"
     
     def transicao(self, entrada):
         if entrada == 'b':
