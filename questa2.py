@@ -1,3 +1,4 @@
+
 T = 'O computador é uma máquina capaz de variados tipos de tratamento automático de informações ou processamento de dados. Entende-se por computador um sistema físico que realiza algum tipo de computação. Assumiu-se que os computadores pessoais e laptops são ícones da era da informação. O primeiro computador eletromecânico foi construído por Konrad Zuse [1910–1995]. Atualmente, um microcomputador é também chamado computador pessoal ou ainda computador doméstico.'
 
 alfabeto = set(T)
@@ -114,7 +115,7 @@ dfa2 = {
 
 def accepts2(transitions, initial, state_final, s):
     state = initial
-
+    positions = []
     for i in range(len(s)):
         if state == 0:
             position = None
@@ -123,12 +124,11 @@ def accepts2(transitions, initial, state_final, s):
             position = i
 
         if position and state == 12:
-            print(position)
-
-
-
+            positions.append(position)
+            
         state = transitions[state][s[i]]
-    return state in state_final
+        
+    return print(positions) if state in state_final else print("Error")
 
 
 print(accepts2(dfa2, 0, {0}, T))
